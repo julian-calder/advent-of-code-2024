@@ -30,11 +30,13 @@ def main():
             if valid:
                 # if we have rules about this update
                 if int(vals[i]) in rules_dict.keys():
-                    # check if preceding value is in list
-                    if int(vals[i-1]) in rules_dict[int(vals[i])]:
-                        valid = False
-                    else:
-                        continue
+                    # check if preceding values are in list
+                    for j in range(0, i):
+                        if int(vals[j]) in rules_dict[int(vals[i])]:
+                            valid = False
+                            break
+                        else:
+                            continue
                 else:
                     continue
             else:
